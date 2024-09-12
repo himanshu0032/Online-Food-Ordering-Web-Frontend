@@ -8,15 +8,19 @@ import Home from './component/Home/Home';
 import ResturantDetails from './component/Resturant/ResturantDetails';
 import Cart from './component/Cart/Cart';
 
+import Profile from './component/Profile/Profile'
+import CustomerRoute from './Routers/CustomerRoute';
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* <Home/> */}
       {/* <ResturantDetails/> */}
-      <Cart/>
+      {/* <Cart/> */}
+     {/* <Profile/> */}
+     <CustomerRoute/>
     </ThemeProvider>
   );
 }
