@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Home.css"
 import MultiItemCarousel from './MultiItemCarousel'
 import ResturantCard from '../Resturant/ResturantCard'
 import Auth from '../Auth/Auth'
+import { useDispatch, useSelector } from 'react-redux'
+import {getAllRestaurantsAction} from '../State/Resturant/Action'
+import { useNavigate } from 'react-router-dom'
+import { findCart } from '../State/Cart/Action'
 
-const resturant = [1,1,1,1,1,1,1,1]
+const resturants = [1,1,1,1,1,1,1,1]
 const Home = () => {
+    const dispatch = useDispatch();
+    const navigate =  useNavigate();
+    const jwt = localStorage.getItem("jwt");
+    const {resturant} = useSelector(store => store)
+    console.log("resturant getAllRestaurantsAction:",resturant)
+    useEffect(()=>{
+         dispatch(getAllRestaurantsAction(jwt))
+        //  dispatch(findCart(jwt))
+    },[])
+
     
   return (
     <div className='pb-10'>
@@ -31,7 +45,7 @@ const Home = () => {
             <h1 className='text-2xl font-semibold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
             <div className='flex flex-wrap items-center justify-around gap-5'>
                 {
-                 resturant.map((item)=><ResturantCard/>)
+                 resturant.restaurants.map((item)=><ResturantCard item={item}/>)
                 }
             </div>
         </section>

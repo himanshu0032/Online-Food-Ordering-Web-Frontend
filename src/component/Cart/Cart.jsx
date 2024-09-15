@@ -1,10 +1,13 @@
-import { Box, Button, Card, Divider, Grid, Modal, TextField } from '@mui/material';
+import { Box, Button, Card, Chip, Divider, Grid, Modal, TextField } from '@mui/material';
 import React from 'react';
 import CartItem from './CartItem';
 import AddressCart from './AddressCart';
 import { create } from '@mui/material/styles/createTransitions';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { removeCartItem, updateCartItem } from '../State/Cart/Action';
 // import * as Yup from "yup";
 
 export const style = {
@@ -20,9 +23,15 @@ export const style = {
   };
 
 const items = [1, 1];
-const Cart = () => {
+const Cart = (item) => {
+  const {auth, cart} = useSelector(store => store)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+   
+    
     const createOrderUsingSelectedAddress = () =>{
-
+     dispatch(removeCartItem({cartItemId: item.id, jwt: auth.jwt||jwt}))
     }
     const handleOpenAddressModal = () => setOpen(true)
 
@@ -47,13 +56,27 @@ const Cart = () => {
     }
 
   return (
+    
     <>
       <main className="lg:flex justify-between">
         {/* Left Section (Cart Items) */}
         <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-10">
-          {items.map((item, index) => (
-            <CartItem key={index} />
-          ))}
+          {console.log("cart.cartItem=",cart.cartItems)}
+          {
+      //       Array.isArray(item.ingredients) &&
+      //       item.ingredients.length > 0 ?
+      //       item.ingredients.map((ingredient) => <Chip key={ingredient} label={ingredient} />)
+      // : <p>No ingredients available</p> // Handle case where no ingredients exist
+
+          cart.cartItems.map((item, index) => (
+            <CartItem key={index} item={item} />
+          ))
+          
+
+          // cart.cart.item.map((item, index) => (
+          //   <CartItem key={index} item={item} />
+          // ))
+          }
           <Divider />
           <div className="billDetails px-5 text-sm">
             <p className="font-extralight py-5">Bill Details</p>
