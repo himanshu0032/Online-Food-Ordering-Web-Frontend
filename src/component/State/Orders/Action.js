@@ -1,8 +1,8 @@
 
 import { type } from "@testing-library/user-event/dist/type";
-import { api } from "../../../config/api";
 // import { GET_USERS_NOTIFICATION_FAILURE, GET_USERS_NOTIFICATION_SUCCESS } from "./ActionType";
 import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_USERS_ORDERS_FAILURE, GET_USERS_ORDERS_REQUEST, GET_USERS_ORDERS_SUCCESS } from "./ActionType";
+import { api } from "../../config/api";
 
 
 export const createOrder = (reqData) => {
