@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
 import UploadToCloudnary from '../util/UploadToCloudnary.js';
-
+import {createRestaurant} from '../../component/State/Resturant/Action.js'
+import { useDispatch } from 'react-redux';
 
 
 const initialValues = {
@@ -26,6 +27,8 @@ const initialValues = {
 
 const CreateResturantForm = () => {
   const [uploadImage, setUploadingImage] = useState("");
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("jwt");
   
   const handleSubmit = (values) => {
     const data = {
@@ -48,7 +51,7 @@ const CreateResturantForm = () => {
       openingHours: values.openingHours,
       images: values.images,
     };
-    // dispatch(createRestaurant({ data, token }));
+     dispatch(createRestaurant({ data, token }));
     console.log("data =", data);
   };
 

@@ -90,7 +90,7 @@ export const getRestaurantByUserId = (jwt) => {
   return async (dispatch) => {
     dispatch({ type: GET_RESTAURANT_BY_USER_ID_REQUEST });
     try {
-      const { data } = await api.get(`/api/admin/restaurants/user`, {
+      const { data } = await api.get(`/api/admin/resturants/user`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -112,7 +112,7 @@ export const createRestaurant = (reqData) => {
   return async (dispatch) => {
     dispatch({type: CREATE_RESTAURANT_REQUEST});
     try {
-      const { data } = await api.post(`/api/admin/restaurants`, reqData.data, {
+      const { data } = await api.post(`/api/admin/resturants`, reqData.data, {
         headers: {
           Authorization: `Bearer ${reqData.token}`,
         },
@@ -151,7 +151,7 @@ export const deleteRestaurant = ({ restaurantId, jwt }) => {
     dispatch({type: DELETE_RESTAURANT_REQUEST});
 
     try {
-      const res = await api.delete(`/api/admin/restaurant/${restaurantId}`, {
+      const res = await api.delete(`/api/admin/resturants/${restaurantId}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -171,7 +171,7 @@ export const updateRestaurantStatus = ({ restaurantId, jwt }) => {
 
     try {
       const res = await api.put(
-        `api/admin/restaurants/${restaurantId}/status`,
+        `api/admin/resturants/${restaurantId}/status`,
         {},
         {
           headers: {
@@ -194,7 +194,7 @@ export const createEventAction = ({ data, jwt,restaurantId }) => {
 
     try {
       const res = await api.post(
-        `api/admin/events/restaurant/${restaurantId}`,
+        `api/admin/events/resturants/${restaurantId}`,
         data,
         {
           headers: {

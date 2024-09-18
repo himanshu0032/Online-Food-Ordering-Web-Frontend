@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import {createCategoryAction} from '../../component/State/Resturant/Action.js'
 
 const CreateFoodCategoryForm = () => {
 
@@ -23,11 +24,11 @@ const CreateFoodCategoryForm = () => {
             id:1,
         },
     };
-    // dispatch(createCategoryAction({reqData:data, jwt: auth.jwt || jwt}))
-    // setFormData({
-    //   categoryName: '',
-    //   restaurantId: '',
-    // })
+    dispatch(createCategoryAction({reqData:data, jwt: auth.jwt || jwt}))
+    setFormData({
+      categoryName: '',
+      restaurantId: '',
+    })
     // handleClose()
     console.log('data:', data);
   };

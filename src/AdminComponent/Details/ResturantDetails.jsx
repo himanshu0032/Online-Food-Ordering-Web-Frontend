@@ -5,22 +5,26 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import { useDispatch, useSelector } from 'react-redux';
+import { updateRestaurantStatus } from '../../component/State/Resturant/Action';
 
 export const ResturantDetails = () => {
+  const {resturant} = useSelector((store) => store)
+  const dispatch = useDispatch();
   const handleRestaurantStatus = () => {
-    // dispatch(
-    //   updateRestaurantStatus({
-    //     restaurantId: restaurant.usersRestaurant.id,
-    //     jwt: auth.jwt || jwt,
-    //   })
-    // );
+    dispatch(
+      updateRestaurantStatus({
+        restaurantId: resturant.usersRestaurant.id,
+        jwt: localStorage.getItem('jwt')
+      })
+    );
   };
 
   return (
     <div className="lg:px-20 px-5">
          <div className="py-5 flex justify-center items-center gap-5">
          <h1 className="text-2xl lg:text-7xl text-center font-bold p-5">
-          INDIAN FAST FOOD
+          {resturant.usersRestaurant?.name}
           </h1>
           <div>
          <Button
@@ -29,9 +33,9 @@ export const ResturantDetails = () => {
             // sx={{ padding: "1rem 2rem" }}
             className="py-[1rem] px-[2rem]"
             variant="contained"
-             color={true ? "error" : "primary"}
+             color={!resturant.usersRestaurant?.open ? "primary" : "error"}
           >
-            {true?
+            {resturant.usersRestaurant?.open ?
                "Close"
               : "Open"}
           </Button>
@@ -51,7 +55,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    Code and Fun
+                    {resturant.usersRestaurant?.owner.fullName}
                   </p>
                 </div>
                 <div className="flex">
@@ -59,7 +63,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    Indian Fast Food
+                    {resturant.usersRestaurant?.name}
                   </p>
                 </div>
                 <div className="flex">
@@ -67,7 +71,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    Pizza And Burgeer
+                    {resturant.usersRestaurant?.cuisineType}
                   </p>
                 </div>
                 <div className="flex">
@@ -75,15 +79,17 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    9:00 Am to 9:00 PM Mon- Fri
+                    {resturant.usersRestaurant?.openingHours}
                   </p>
                 </div>
                 <div className="flex">
-                  <p className="w-48">Status</p>
+                  <p className="w-48">
+                  {resturant.usersRestaurant?.name}
+                  </p>
                   <div className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    {true ? (
+                    {resturant.usersRestaurant?.open ? (
                       <span className="px-5 py-2 rounded-full bg-green-400 text-gray-950">
                         Open
                       </span>
@@ -111,7 +117,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    India
+                    {resturant.usersRestaurant?.address?.country}
                   </p>
                 </div>
                 <div className="flex">
@@ -119,7 +125,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    Bangalore
+                    {resturant.usersRestaurant?.address?.city}
                   </p>
                 </div>
                 <div className="flex">
@@ -127,7 +133,7 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>{" "}
-                    560093
+                    {resturant.usersRestaurant?.address?.postalCode}
                   </p>
                 </div>
                 <div className="flex">
@@ -155,7 +161,8 @@ export const ResturantDetails = () => {
                   <p className="text-gray-400">
                     {" "}
                     <span className="pr-5">-</span>
-                   code@gmail.com
+                    {resturant.usersRestaurant?.contactInformation?.email}
+
                   </p>
                 </div>
                 <div className="flex">
@@ -164,7 +171,7 @@ export const ResturantDetails = () => {
                     {" "}
                     <span className="pr-5">-</span>
                     {" +91"}
-                   1234567891
+                    {resturant.usersRestaurant?.contactInformation?.mobile}
                   </p>
                 </div>
                 <div className="flex items-center">
@@ -174,14 +181,14 @@ export const ResturantDetails = () => {
                     <span className="pr-5">-</span>{" "}
                     <a
                       target="_blank"
-                      href="/"
+                      href={resturant.usersRestaurant?.contactInformation?.instagram}
                       rel="noreferrer"
                     >
                       <InstagramIcon sx={{ fontSize: "3rem" }} />
                     </a>
                     <a
                       className="ml-5"
-                      href="/"
+                      href={resturant.usersRestaurant?.contactInformation?.twitter}
                       target="_blank"
                       rel="noreferrer"
                     >

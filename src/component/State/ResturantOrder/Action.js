@@ -8,7 +8,8 @@ import {
   GET_RESTAURANTS_ORDER_SUCCESS,
   GET_RESTAURANTS_ORDER_FAILURE,
 } from "./ActionType.js";
-import { api } from "../../../config/api.js";
+import { api } from "../../config/api.js";
+
 
 export const updateOrderStatus = ({orderId,orderStatus,jwt}) => {
   return async (dispatch) => {
@@ -44,7 +45,7 @@ export const fetchRestaurantsOrder = ({restaurantId,orderStatus,jwt}) => {
       dispatch({ type: GET_RESTAURANTS_ORDER_REQUEST });
 
       const { data } = await api.get(
-        `/api/admin/order/restaurant/${restaurantId}`,{
+        `/api/admin/order/resturant/${restaurantId}`,{
           params: { order_status:orderStatus},
           headers: {
             Authorization: `Bearer ${jwt}`,
