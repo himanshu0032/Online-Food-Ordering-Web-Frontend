@@ -254,7 +254,7 @@ const CreateMenuForm = () => {
         
         </Grid>
         <Button fullWidth variant="contained" color="primary" type="submit">
-            Create Restaurant
+            Create Menu
           </Button>
         </form>
       </div>
