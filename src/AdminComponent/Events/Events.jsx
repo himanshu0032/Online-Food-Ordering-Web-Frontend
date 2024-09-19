@@ -4,6 +4,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
+import {createEventAction} from '../../component/State/Resturant/Action.js'
 
 const style = {
   position: "absolute",
@@ -28,7 +29,7 @@ const initialValues = {
 const Events = () => {
   const [image, setimage] = useState("");
   const dispatch = useDispatch();
-  const { restaurant, auth } = useSelector((store) => store);
+  const { resturant, auth } = useSelector((store) => store);
 
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
@@ -50,13 +51,13 @@ const Events = () => {
     event.preventDefault();
     console.log("form Values", formValues)
     // Convert dates to string format when submitting, if needed
-    // const submittedValues = {
-    //   ...formValues,
-    //   startedAt: formValues.startedAt.format("MMMM DD, YYYY hh:mm A"),
-    //   endsAt: formValues.endsAt.format("MMMM DD, YYYY hh:mm A"),
-    // };
-    // console.log("submitted values", submittedValues);
-    // dispatch(createEventAction({ data: submittedValues, restaurantId: restaurant.usersRestaurant?.id, jwt }));
+    const submittedValues = {
+      ...formValues,
+      startedAt: formValues.startedAt.format("MMMM DD, YYYY hh:mm A"),
+      endsAt: formValues.endsAt.format("MMMM DD, YYYY hh:mm A"),
+    };
+     console.log("submitted values", submittedValues);
+    dispatch(createEventAction({ data: submittedValues, restaurantId: resturant.usersRestaurant?.id, jwt }));
     // console.log("Image URL:", submittedValues, restaurant.usersRetaurant?.id);
      setFormValues(initialValues);
     // handleCloseModal();

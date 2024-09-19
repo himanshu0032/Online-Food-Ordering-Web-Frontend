@@ -54,7 +54,7 @@ const ResturantDetails = () => {
   useEffect(() => {
     console.log("Dispatching getRestaurantById with id:", id);
     dispatch(getRestaurantById({ jwt, resturantId: id }));
-    dispatch(getRestaurantsCategory({ jwt, resturantId: id }));
+    dispatch(getRestaurantsCategory({ jwt, restaurantId: id }));
     // dispatch(
     //   getMenuItemsByRestaurantId({
     //     jwt,

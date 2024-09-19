@@ -90,6 +90,7 @@ export const getRestaurantByUserId = (jwt) => {
   return async (dispatch) => {
     dispatch({ type: GET_RESTAURANT_BY_USER_ID_REQUEST });
     try {
+      console.log("jwt received", jwt);
       const { data } = await api.get(`/api/admin/resturants/user`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
@@ -288,12 +289,13 @@ export const createCategoryAction = ({ reqData, jwt }) => {
   };
 };
 
-export const getRestaurantsCategory = ({ jwt,resturantId }) => {
+export const getRestaurantsCategory = ({ jwt,restaurantId }) => {
   return async (dispatch) => {
+    console.log("getRestaurantsCategory ",restaurantId);
     dispatch({ type: GET_RESTAURANTS_CATEGORY_REQUEST });
     try {
       // http://localhost:3002/api/category/resturant/54
-      const res = await api.get(`/api/category/resturant/${resturantId}`, {
+      const res = await api.get(`/api/category/resturant/${restaurantId}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

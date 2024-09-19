@@ -13,11 +13,12 @@ const initialValues = {
 }
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
     const handleSubmit = (values) =>{
        console.log("values", values)
        dispatch(registerUser({userData:values, navigate}))
     }
-    const navigate = useNavigate();
+   
   return (
     <div>
        <Typography variant='h5' className='text-center'>
@@ -43,7 +44,7 @@ const RegisterForm = () => {
          
         >
           <MenuItem value={"ROLE_CUSTOMER"}>Customer</MenuItem>
-          <MenuItem value={"ROLE_RESTURANT_OWNER"}>Resturant Owner</MenuItem>
+          <MenuItem value={"ROLE_RESTAURANT_OWNER"}>Restaurant Owner</MenuItem>
         </Field>
       </FormControl>
 

@@ -52,11 +52,13 @@ const Cart = (item) => {
     //   pinCode: Yup.required("pinCode is required"),
     //   city: Yup.string().required("city is required")
     // })
+    console.log("cart is",cart)
     const handleSubmit = (values) =>{
       const data = {
         jwt: localStorage.getItem("jwt"),
+        
         order: {
-          resturantId: cart.cartItems[0].food?.resturant.id,
+          restaurantId: cart.cartItems[0].food?.restaurant.id,
           deliveryAddress: {
             fullName: auth.user?.fullName,
             streetAddress: values.streetAddress,
@@ -100,7 +102,7 @@ const Cart = (item) => {
               <div className="flex justify-between text-gray-400">
                 <p>Item Total</p>
                 {/* {console.log("cart is ", cart)} */}
-                <p>₹{cart.cart.total}</p>
+                <p>₹{cart.cart?.total}</p>
               </div>
               <div className="flex justify-between text-gray-400">
                 <p>Delivery Charge</p>
@@ -114,7 +116,7 @@ const Cart = (item) => {
             </div>
             <div className="flex justify-between text-gray-400">
               <p>Total Pay</p>
-              <p>₹{cart.cart.total+30+21}</p>
+              <p>₹{cart.cart?.total+30+21}</p>
             </div>
           </div>
         </section>

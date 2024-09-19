@@ -10,11 +10,13 @@ const initialValues = {
     password:""
 }
 const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
     const handleSubmit = (values) =>{
+      console.log("Login form values:", values);
       dispatch(loginUser({userData:values, navigate}))
     }
-    const navigate = useNavigate();
+    
   return (
     <div>
        <Typography variant='h5' className='text-center'>
